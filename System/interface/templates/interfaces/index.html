@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Gerenciador{% endblock %}
+{% block content %}
+<section class="backIndex">
+<section class="botoes">
+<div style="display: inline-block;" class="container-fluid">
+  <a id="add-link" href="newKitnet/">
+      <div class="col-2 add text-center">
+          <i class="fas fa-plus"></i> Adicionar Kitnet
+      </div>
+  </a>
+  <div class="filtro">
+      <select name="filter" id="filter" class="text-center form-control filtro container-fluid">
+      <option class="text-center"value="#">Filtrar</option>
+      <option value="#">Todos</option>
+      <option value='Pequeno'>Kitnets Pequenos</option>
+      <option value="Medio">Kitnets Medios</option>
+      <option value="Grande">Kitnets Grandes</option>
+  </select>
+  </div>
+</div>
+  </section>
+  <!-- ALERTA DE DELETE -->
+        <section class="button-fluid">
+          {% if messages %}
+          <ul class="messages">
+            {%for message in messages %}
+            <div {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}
+            </div>
+            {% endfor %}
+          </ul> 
+          {% endif %}
+  <!-- ALERTA DE DELETE -->
+
+  <!-- CARD DO KITNET -->
+      {% for kitnet in interfaces %}
+        <div class="card-fluid text-center" ;>
+          <div class="container">
+            <div class="card">
+              <div class="box">
+                <div class="content">
+                  <h2>{{kitnet.NumKitnet}}</h2>
+                  <h3>Kitnet: {{kitnet.NumKitnet}}</h3>
+                  <p>Nome do Titular: {{kitnet.nome}}</p>
+                  <p>CPF do Titular: {{kitnet.cpf}}</p>
+                  <p>Tamanho: {{kitnet.Tam_Kitnet}}</p>
+                  <p>Valor mensal = R$:{{kitnet.Valor_Imovel}}</p>
+                  <div class="card-body text-center">
+                    <a href="edit/{{kitnet.id}}"  class="btn btn-success ">Editar <span<i class="fas fa-edit"></span></i></a>
+                    <a href="delete/{{kitnet.id}}" class="btn btn-danger " value="Cancelar">Deletar<span<i class="fas fa-trash"></span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </section>
+{% endblock %}
+
+
+

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}LOGIN{% endblock %}
+{% block content %}
+<section class="background">
+    <div class="jumbotron text-center">
+        <div class="row form-login"
+            <div class="card auth-card ">
+                <duv class="card-body">
+                    <h4 class="card-title text-center">LOGIN</h4>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary btn-entrar" >ENTRAR</button>
+                    </form>
+                    <div class="copy-text">Não Tem Conta? </i><a href="/accounts/register/">Inscreva-se</a></div>
+                </duv>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

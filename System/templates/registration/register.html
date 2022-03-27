@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}LOGIN{% endblock %}
+
+{% block content %}
+<div class=" container-fluid-newkitnet text-center">
+
+        <div class="card auth-card ">
+            <duv class="card-body">
+                <h4 class="card-title text-center">Registrar</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary btn-entrar" >Registrar</button>
+                </form>
+                <div class="copy-text">Já possui conta? </i><a href="/accounts/login">Faça Login</a></div>
+            </duv>
+        </div>
+    
+
+</div>
+
+</html>
+{% endblock %}
+
+

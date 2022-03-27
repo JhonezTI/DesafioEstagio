@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Editar{% endblock %}
+{% block content %}
+          <!-- ALERTA DE DELETE -->
+          <section class="button-fluid">
+            {% if messages %}
+            <ul class="messages">
+              {%for message in messages %}
+              <div {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}
+              </div>
+              {% endfor %}
+            </ul> 
+            {% endif %}
+    <!-- ALERTA DE DELETE -->
+<section class="container-fluid-newkitnet">
+  <div class="offset-1 col">
+      <form method="post" novalidate>
+        <h3 class="text-center">Editando dados</h3>
+        {% csrf_token %}
+        {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+          <div class="form-group">
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+            {% if field.help_text %}
+              <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-success btn-edit" value="Salvar alteração">
+        <a href="/" class="btn btn-danger btn-edit" value="Cancelar">Cancelar</a>
+      </form>
+  </div>
+</section>
+{% endblock %}
+
+
+
